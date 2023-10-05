@@ -1,0 +1,24 @@
+{
+    "name": "brookinsconsulting/bcwebshop",
+    "description": "eZ Publish Legacy extension which provides the an extension based web shop for usa customers. Great for smart developers!",
+    "type": "ezpublish-legacy-extension",
+    "keywords": [ "eZ Publish", "eZ Publish Legacy", "eZ Publish Platform", "store", "shop", "extension", "usa" ],
+    "homepage": "https://github.com/brookinsconsulting/bcwebshop",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name" : "Brookins Consulting",
+            "homepage": "http://brookinsconsulting.com",
+            "email": "info@brookinsconsulting.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.0.0",
+        "ezsystems/ezpublish-legacy-installer": "*"
+    },
+    "extra": {
+        "ezpublish-legacy-extension-name": "bcwebshop"
+    }
+}

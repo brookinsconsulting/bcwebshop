@@ -136,6 +136,16 @@ unzip brookinsconsulting-bcwebshop-d1d1411.tar.gz;
 sudo chmod -R 777 ../bcwebshop;
 
 
+3.5 Dependencies for BC Web Shop
+   ===========================
+
+BC Web Shop depends upon the following kernel override extension being installed and available:
+
+- https://github.com/brookinsconsulting/bckernelmoduleoverride
+
+We rely on this dependency to load the bcwebshop extension modules before the default kernel modules. This kernel override prevents kernel customizations or kernel hacking.
+
+
 4. We must now enable the extension in eZ Publish.
    ===========================
 

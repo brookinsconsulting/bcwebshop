@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<software>
+    <metadata>
+        <name>BC Web Shop</name>
+        <version>1.0.1</version>
+        <copyright>Copyright (C) 1999 - 2023 Brookins Consulting. All rights reserved.</copyright>
+        <license>GNU General Public License</license>
+        <info_url>https://github.com/brookinsconsulting/bcwebshop</info_url>
+        <package_url>https://packagist.org/packages/brookinsconsulting/bcwebshop</package_url>
+    </metadata>
+</software>

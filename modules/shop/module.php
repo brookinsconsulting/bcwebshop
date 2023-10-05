@@ -294,6 +294,75 @@ $ViewList['setusercountry'] = array(
     'unordered_params' => array( 'country' => 'Country' ),
     'params' => array(  ) );
 
+$ViewList['action'] = array(
+    'functions' => array( 'read' ),
+    'default_navigation_part' => 'ezcontentnavigationpart',
+    'script' => 'action.php',
+    'ui_context' => 'edit',
+    'params' => array(  ),
+    'single_post_actions' => array( 'RemoveAssignmentButton' => 'RemoveAssignment',
+                                    'AddAssignmentButton' => 'SelectAssignmentLocation',
+                                    'AddAssignmentAction' => 'AddAssignment',
+                                    'UpdateMainAssignmentButton' => 'UpdateMainAssignment',
+                                    'ClearViewCacheButton' => 'ClearViewCache',
+                                    'ClearViewCacheSubtreeButton' => 'ClearViewCacheSubtree',
+                                    'MoveNodeButton' => 'MoveNodeRequest',
+                                    'MoveNodeAction' => 'MoveNode',
+                                    'SwapNodeButton' => 'SwapNodeRequest',
+                                    'SwapNodeAction' => 'SwapNode',
+                                    'UploadFileAction' => 'UploadFile' ),
+    'post_action_parameters' => array( 'SelectAssignmentLocation' => array( 'AssignmentIDSelection' => 'AssignmentIDSelection',
+                                                                            'NodeID' => 'ContentNodeID',
+                                                                            'ObjectID' => 'ContentObjectID',
+                                                                            'ViewMode' => 'ViewMode',
+                                                                            'LanguageCode' => 'ContentObjectLanguageCode' ),
+                                       'AddAssignment' => array( 'AssignmentIDSelection' => 'AssignmentIDSelection',
+                                                                 'NodeID' => 'ContentNodeID',
+                                                                 'ObjectID' => 'ContentObjectID',
+                                                                 'ViewMode' => 'ViewMode',
+                                                                 'LanguageCode' => 'ContentObjectLanguageCode' ),
+                                       'RemoveAssignment' => array( 'AssignmentIDSelection' => 'AssignmentIDSelection', // Note: AssignmentIDSelection is deprecated, use LocationIDSelection
+                                                                    'LocationIDSelection' => 'LocationIDSelection',
+                                                                    'NodeID' => 'ContentNodeID',
+                                                                    'ObjectID' => 'ContentObjectID',
+                                                                    'ViewMode' => 'ViewMode',
+                                                                    'LanguageCode' => 'ContentObjectLanguageCode' ),
+                                       'UpdateMainAssignment' => array( 'MainAssignmentID' => 'MainAssignmentCheck',
+                                                                        'HasMainAssignment' => 'HasMainAssignment',
+                                                                        'NodeID' => 'ContentNodeID',
+                                                                        'ObjectID' => 'ContentObjectID',
+                                                                        'ViewMode' => 'ViewMode',
+                                                                        'LanguageCode' => 'ContentObjectLanguageCode' ),
+                                       'ClearViewCache' => array( 'NodeID' => 'NodeID',
+                                                                  'ObjectID' => 'ObjectID',
+                                                                  'ViewMode' => 'ViewMode',
+                                                                  'LanguageCode' => 'ContentObjectLanguageCode',
+                                                                  'CurrentURL' => 'CurrentURL' ),
+                                       'ClearViewCacheSubtree' => array( 'NodeID' => 'NodeID',
+                                                                         'ObjectID' => 'ObjectID',
+                                                                         'ViewMode' => 'ViewMode',
+                                                                         'LanguageCode' => 'ContentObjectLanguageCode',
+                                                                         'CurrentURL' => 'CurrentURL' ),
+                                       'MoveNodeRequest' => array( 'NodeID' => 'ContentNodeID',
+                                                                   'ViewMode' => 'ViewMode',
+                                                                   'LanguageCode' => 'ContentObjectLanguageCode' ),
+                                       'MoveNode' => array( 'NodeID' => 'ContentNodeID',
+                                                            'ViewMode' => 'ViewMode',
+                                                            'NewParentNode' => 'NewParentNode',
+                                                            'LanguageCode' => 'ContentObjectLanguageCode' ),
+                                       'SwapNodeRequest' => array( 'NodeID' => 'ContentNodeID',
+                                                                   'ViewMode' => 'ViewMode',
+                                                                   'LanguageCode' => 'ContentObjectLanguageCode' ),
+                                       'SwapNode' => array( 'NodeID' => 'ContentNodeID',
+                                                            'ViewMode' => 'ViewMode',
+                                                            'NewNode' => 'NewNode',
+                                                            'LanguageCode' => 'ContentObjectLanguageCode' ),
+                                       'UploadFile' => array( 'UploadActionName' => 'UploadActionName',
+                                                              'UploadParentNodes' => 'UploadParentNodes',
+                                                              'UploadRedirectBack' => 'UploadRedirectBack' ) ),
+    'post_actions' => array( 'BrowseActionName' ) );
+
+
 
 $FromStatus = array(
     'name' => 'FromStatus',
@@ -320,5 +389,16 @@ $FunctionList['buy'] = array( );
 $FunctionList['edit_status'] = array( );
 $FunctionList['setstatus'] = array( 'FromStatus' => $FromStatus,
                                     'ToStatus' => $ToStatus );
+
+$stateLimitations = eZContentObjectStateGroup::limitations();
+
+$FunctionList['read'] = array( 'Class' => $ClassID,
+                               'Section' => $SectionID,
+                               'Owner' => $Assigned,
+                               'Group' => $AssignedGroup,
+                               'Node' => $Node,
+                               'Subtree' => $Subtree);
+$FunctionList['read'] = array_merge( $FunctionList['read'], $stateLimitations );
+
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * File containing the bcusauserShopAccountHandler class.
+ * File containing the bcusacouponuserShopAccountHandler class.
  *
  * @copyright Copyright (C) Brookins Consulting. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -8,7 +8,7 @@
  * @package kernel
  */
 
-class bcusauserShopAccountHandler
+class bcusacouponuserShopAccountHandler
 {
     /*!
      Will verify that the user has supplied the correct user information.
@@ -80,6 +80,7 @@ class bcusauserShopAccountHandler
         $country = '';
         $comment = '';
         $state = '';
+        $couponCode = '';
 
         $dom = new DOMDocument( '1.0', 'utf-8' );
         $xmlString = $order->attribute( 'data_text_1' );
@@ -153,6 +154,12 @@ class bcusauserShopAccountHandler
             {
                 $comment = $commentNode->textContent;
             }
+
+            $couponCodeNode = $dom->getElementsByTagName( 'coupon_code' )->item( 0 );
+            if ( $couponCodeNode )
+            {
+                $couponCode = $couponCodeNode->textContent;
+            }
         }
 
         return array( 'first_name' => $firstName,
@@ -166,6 +173,7 @@ class bcusauserShopAccountHandler
                       'state' => $state,
                       'country' => $country,
                       'comment' => $comment,
+                      'coupon_code' => $couponCode,
                       );
     }
 }

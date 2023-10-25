@@ -33,7 +33,7 @@ if ( $user->isRegistered() )
 }
 
 // Initialize variables
-$street1 = $street2 = $zip = $city = $state = $country = $comment = '';
+$street1 = $street2 = $zip = $city = $state = $country = $comment = $coupon = '';
 
 
 // Check if user has an earlier order, copy order info from that one
@@ -43,10 +43,12 @@ if ( count( $orderList ) > 0 and  $user->isRegistered() )
     $accountInfo = $orderList[0]->accountInformation();
     $street1 = $accountInfo['street1'];
     $street2 = $accountInfo['street2'];
+    $phone = $accountInfo['phone'];
     $zip = $accountInfo['zip'];
     $city = $accountInfo['city'];
     $state = $accountInfo['state'];
     $country = $accountInfo['country'];
+    $couponCode = $accountInfo['coupon_code'];
 }
 
 $tpl->setVariable( "input_error", false );
@@ -64,12 +66,12 @@ if ( $module->isCurrentAction( 'Store' ) )
         $inputIsValid = false;
     $phone = $http->postVariable( "Phone" );
     if ( trim( $phone ) == "" )
-        $inputIsValid = false;
+        $inputIsValid = true;
 
     $street1 = $http->postVariable( "Street1" );
     $street2 = $http->postVariable( "Street2" );
         if ( trim( $street2 ) == "" )
-            $inputIsValid = false;
+            $inputIsValid = true;
 
     $zip = $http->postVariable( "Zip" );
     if ( trim( $zip ) == "" )
@@ -83,6 +85,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         $inputIsValid = false;
 
     $comment = $http->postVariable( "Comment" );
+    $couponCode = $http->postVariable( "CouponCode" );
 
     if ( $inputIsValid == true )
     {
@@ -131,6 +134,9 @@ if ( $module->isCurrentAction( 'Store' ) )
         $commentNode = $doc->createElement( "comment", $comment );
         $root->appendChild( $commentNode );
 
+        $couponCodeNode = $doc->createElement( "coupon_code", $couponCode );
+        $root->appendChild( $couponCodeNode );
+
         $xmlString = $doc->saveXML();
 
         $order->setAttribute( 'data_text_1', $xmlString );
@@ -164,6 +170,7 @@ $tpl->setVariable( "city", $city );
 $tpl->setVariable( "state", $state );
 $tpl->setVariable( "country", $country );
 $tpl->setVariable( "comment", $comment );
+$tpl->setVariable( "coupon_code", $couponCode );
 
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:shop/userregister.tpl" );

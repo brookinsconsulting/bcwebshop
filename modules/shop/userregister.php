@@ -149,6 +149,19 @@ if ( $module->isCurrentAction( 'Store' ) )
         eZShopFunctions::setPreferredUserCountry( $country );
         $http->setSessionVariable( 'MyTemporaryOrderID', $order->attribute( 'id' ) );
 
+        $http->setSessionVariable( "FirstName", $firstName );
+        $http->setSessionVariable( "LastName", $lastName );
+        $http->setSessionVariable( "Email", $email );
+        $http->setSessionVariable( "Phone", $phone );
+        $http->setSessionVariable( "Street1", $street1 );
+        $http->setSessionVariable( "Street2", $street2 );
+        $http->setSessionVariable( "Zip", $zip );
+        $http->setSessionVariable( "City", $city );
+        $http->setSessionVariable( "State", $state );
+        $http->setSessionVariable( "Country", $country );
+        $http->setSessionVariable( "Comment", $comment );
+        $http->setSessionVariable( "CouponCode", $couponCode );
+
         $module->redirectTo( '/shop/confirmorder/' );
         return;
     }
@@ -157,6 +170,31 @@ if ( $module->isCurrentAction( 'Store' ) )
         $tpl->setVariable( "input_error", true );
     }
 }
+
+if( $http->sessionVariable( "FirstName" ) )
+    $firstName = $http->sessionVariable( "FirstName" );
+if( $http->sessionVariable( "LastName" ) )
+    $lastName = $http->sessionVariable( "LastName" );
+if( $http->sessionVariable( "Email" ) )
+    $email = $http->sessionVariable( "Email" );
+if( $http->sessionVariable( "Phone" ) )
+    $phone = $http->sessionVariable( "Phone" );
+if( $http->sessionVariable( "Street1" ) )
+    $street1 = $http->sessionVariable( "Street1" );
+if( $http->sessionVariable( "Street2" ) )
+    $street2 = $http->sessionVariable( "Street2" );
+if( $http->sessionVariable( "Zip" ) )
+    $zip = $http->sessionVariable( "Zip" );
+if( $http->sessionVariable( "City" ) )
+    $city = $http->sessionVariable( "City" );
+if( $http->sessionVariable( "State" ) )
+    $state = $http->sessionVariable( "State" );
+if( $http->sessionVariable( "Country" ) )
+    $Country = $http->sessionVariable( "Country" );
+if( $http->sessionVariable( "Comment" ) )
+    $comment = $http->sessionVariable( "Comment" );
+if( $http->sessionVariable( "CouponCode" ) )
+    $couponCode = $http->sessionVariable( "CouponCode" );
 
 $tpl->setVariable( "first_name", $firstName );
 $tpl->setVariable( "last_name", $lastName );

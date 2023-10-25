@@ -14,6 +14,9 @@
         }
     ],
     "minimum-stability": "dev",
+    "suggest": {
+        "brookinsconsulting/xrowcoupon": "xrowcoupon is a web shop coupon featureset that has been tested working with this solution"
+    },
     "require": {
         "php": ">=5.0.0",
         "ezsystems/ezpublish-legacy-installer": "*"
